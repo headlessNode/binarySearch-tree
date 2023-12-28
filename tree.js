@@ -34,4 +34,12 @@ export class Tree{
         const uniqueSortedArray = sortAndUnique(dataArray); 
         this.root = buildTree(uniqueSortedArray, 0, uniqueSortedArray.length - 1);
     }
+    insert(value){
+        if(this.root === null){
+            throw new Error('The tree is empty.');
+        }
+        else{
+            
+        }        
+    }
 }
