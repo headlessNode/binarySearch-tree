@@ -11,8 +11,27 @@ function buildTree(dataArray, start, end){
     return root
 }
 
+function sortAndUnique(dataArray){
+    return dataArray.sort((a,b)=>{
+        if(a > b){
+            return 1;
+        }
+        else if(a < b){
+            return -1;
+        }
+        else{
+            return 0;
+        }
+    }).filter((element, index, arr)=>{
+        if(arr[index] != arr[index + 1]){
+            return true;
+        }
+    });
+}
+
 export class Tree{
-    constructor(dataArray, start, end){
-        this.root = buildTree(dataArray, start, end);
+    constructor(dataArray){
+        const uniqueSortedArray = sortAndUnique(dataArray); 
+        this.root = buildTree(uniqueSortedArray, 0, uniqueSortedArray.length - 1);
     }
 }

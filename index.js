@@ -1,7 +1,7 @@
 import { Tree } from "./tree.js";
 
 const dataArray = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
-const treeList = new Tree(dataArray, 0, dataArray.length - 1);
+const treeList = new Tree(dataArray);
 const prettyPrint = (node, prefix = "", isLeft = true) => {
     if (node === null) {
       return;
