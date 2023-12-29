@@ -15,9 +15,7 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
     }
 };
 
-treeList.insert(10);
-treeList.insert(0);
-treeList.insert(300);
-treeList.remove(5);
-treeList.remove(23);
+
+prettyPrint(treeList.root);
+treeList.remove(8);
 prettyPrint(treeList.root);

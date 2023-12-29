@@ -60,9 +60,8 @@ export class Tree{
         if(this.root === null){
             throw new Error('Tree is empty.');
         }
-        else{
+        else if(value != this.root.data){
             if(tmp.right.data === value){
-
                 if(tmp.right.right === null && tmp.right.left === null){
                     tmp.right = null;
                 }
@@ -78,17 +77,68 @@ export class Tree{
                 }
                 else if(tmp.right.right != null && tmp.right.left != null){
                     let rightSubT = tmp.right.right;
-                    //
+                    if(rightSubT.left != null){
+                        while(rightSubT.left != null){
+                            rightSubT = rightSubT.left;
+                            tmp.right.right.left;
+                        }
+                        tmp.right.data = rightSubT.data;
+                        tmp.right.right.left = null;
+                    }
+                    else{
+                        while(rightSubT.right != null){
+                            rightSubT = rightSubT.right;
+                            tmp.right.right.right;
+                        }
+                        tmp.right.data = rightSubT.data;
+                        tmp.right.right.right = null;
+                    }
+                    
                 }
             }
-            else if(tmp.left === value){
-                //
+            else if(tmp.left.data === value){
+                if(tmp.left.left === null && tmp.left.right === null){
+                    tmp.left = null;
+                }
+                else if(tmp.left.left != null && tmp.left.right === null){
+                    let replacingNode = tmp.left.left;
+                    tmp.left = null;
+                    tmp.left = replacingNode;
+                }
+                else if(tmp.left.left === null && tmp.left.right != null){
+                    let replacingNode = tmp.left.right;
+                    tmp.left = null;
+                    tmp.left = replacingNode;
+                }
+                else if(tmp.left.left != null && tmp.left.right != null){
+                    let rightSubT = tmp.left.right;
+                    if(rightSubT.left != null){
+                        while(rightSubT.left != null){
+                            rightSubT = rightSubT.left;
+                            tmp.left.right.left;
+                        }
+                        tmp.left.data = rightSubT.data;
+                        tmp.left.right.left = null;
+                    }
+                    else{
+                        while(rightSubT.right != null){
+                            rightSubT = rightSubT.right;
+                            tmp.left.right.right;
+                        }
+                        tmp.right.data = rightSubT.data;
+                        tmp.left.right.right = null;   
+                    }
+                    
+                }
             }
             else if(value > tmp.data){
                 this.remove(value, tmp.right);
             }else if(value < tmp.data){
                 this.remove(value, tmp.left);
             }
+        }
+        else{
+            
         }
     }
 }
