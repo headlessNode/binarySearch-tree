@@ -34,12 +34,26 @@ export class Tree{
         const uniqueSortedArray = sortAndUnique(dataArray); 
         this.root = buildTree(uniqueSortedArray, 0, uniqueSortedArray.length - 1);
     }
-    insert(value){
+    insert(value, tmp = this.root){
         if(this.root === null){
-            throw new Error('The tree is empty.');
+            this.root = new Node(value);
         }
         else{
-            
+            if(value > tmp.data){
+                if(tmp.right === null){
+                    tmp.right = new Node(value);
+                }else{
+                    this.insert(value, tmp.right);
+                }
+            }else if(value < tmp.data){
+                if(tmp.left === null){
+                    tmp.left = new Node(value);
+                }else{
+                    this.insert(value, tmp.left);
+                }
+            }else{
+                throw new Error('Duplicates not allowed.');
+            }
         }        
     }
 }

@@ -16,4 +16,6 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 };
 
 treeList.insert(10);
+treeList.insert(0);
+treeList.insert(300);
 prettyPrint(treeList.root);
