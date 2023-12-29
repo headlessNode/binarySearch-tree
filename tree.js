@@ -56,4 +56,39 @@ export class Tree{
             }
         }        
     }
+    remove(value, tmp = this.root){
+        if(this.root === null){
+            throw new Error('Tree is empty.');
+        }
+        else{
+            if(tmp.right.data === value){
+
+                if(tmp.right.right === null && tmp.right.left === null){
+                    tmp.right = null;
+                }
+                else if(tmp.right.right != null && tmp.right.left === null){
+                    let replacingNode = tmp.right.right;
+                    tmp.right = null;
+                    tmp.right = replacingNode;
+                }
+                else if(tmp.right.right === null && tmp.right.left != null){
+                    let replacingNode = tmp.right.left;
+                    tmp.right = null;
+                    tmp.right = replacingNode;
+                }
+                else if(tmp.right.right != null && tmp.right.left != null){
+                    let rightSubT = tmp.right.right;
+                    //
+                }
+            }
+            else if(tmp.left === value){
+                //
+            }
+            else if(value > tmp.data){
+                this.remove(value, tmp.right);
+            }else if(value < tmp.data){
+                this.remove(value, tmp.left);
+            }
+        }
+    }
 }
