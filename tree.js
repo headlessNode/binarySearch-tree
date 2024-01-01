@@ -57,133 +57,133 @@ export class Tree{
         }        
     }
     remove(value, tmp = this.root){
-        //IF ROOT NODE IS TO BE DELETED
-        if(value === this.root.data){
-            if(this.root.right != null){
-                let rightSubT = tmp.right;
-                if(tmp.left === null && tmp.right != null){
-                    this.root.data = tmp.data;
-                    if(rightSubT != null){
-                        tmp.data = rightSubT.data;
+        if(tmp === null){
+            throw new Error(`${value} doesnot exist in the tree.`);
+        }
+        else {
+            //IF ROOT NODE IS TO BE DELETED
+            if(value === this.root.data){
+                if(this.root.right != null){
+                    let rightSubT = tmp.right;
+                    if(tmp.left === null && tmp.right != null){
+                        this.root.data = tmp.data;
+                        if(rightSubT != null){
+                            tmp.data = rightSubT.data;
+                            tmp.right = null;
+                        }
+                    }
+                    else if(tmp.left === null && tmp.right === null){
+                        this.root.data = tmp.data;
+                        let nTmp = this.root;
+                        while(nTmp.right.left != null && nTmp.right.right != null){
+                            nTmp = nTmp.right;
+                        }
+                        if(nTmp.left.left === null && nTmp.left.right === null){
+                            nTmp.left = null;
+                        }
+                    }
+                    else{
+                        if(rightSubT.left != null){
+                            this.remove(value, rightSubT.left);
+                        }
+                        else{
+                            this.root.data = rightSubT.data;
+                            if(rightSubT.right != null){
+                                this.root.right = rightSubT.right;
+                                rightSubT.right = null;
+                            }else{
+                                this.root.right = rightSubT.data;
+                                this.root.right = null;
+                            }
+                        }
+                        
+                    }
+                }
+                else{
+                    if(this.root.left != null){
+                        this.root = this.root.left;
+                    }
+                    else{
+                        this.root = null;
+                        console.log("The Tree is now empty.")
+                    }
+                    
+                }
+            }
+            else{ 
+                if(tmp.right != null && tmp.right.data === value){
+                    if(tmp.right.right === null && tmp.right.left === null){
                         tmp.right = null;
                     }
-                }
-                else if(tmp.left === null && tmp.right === null){
-                    this.root.data = tmp.data;
-                    let nTmp = this.root;
-                    while(nTmp.right.left != null && nTmp.right.right != null){
-                        nTmp = nTmp.right;
+                    else if(tmp.right.right != null && tmp.right.left === null){
+                        let replacingNode = tmp.right.right;
+                        tmp.right = null;
+                        tmp.right = replacingNode;
                     }
-                    if(nTmp.left.left === null && nTmp.left.right === null){
-                        nTmp.left = null;
+                    else if(tmp.right.right === null && tmp.right.left != null){
+                        let replacingNode = tmp.right.left;
+                        tmp.right = null;
+                        tmp.right = replacingNode;
                     }
-                }
-                else{
-                    if(rightSubT.left != null){
-                        this.remove(value, rightSubT.left);
-                    }
-                    else{
-                        this.root.data = rightSubT.data;
-                        if(rightSubT.right != null){
-                            this.root.right = rightSubT.right;
-                            rightSubT.right = null;
-                        }else{
-                            this.root.right = rightSubT.data;
-                            this.root.right = null;
+                    else if(tmp.right.right != null && tmp.right.left != null){
+                        let rightSubT = tmp.right.right;
+                        if(rightSubT.left != null){
+                            while(rightSubT.left != null){
+                                rightSubT = rightSubT.left;
+                            }
+                            tmp.right.data = rightSubT.data;
+                            tmp.right.right.left = null;
                         }
-                    }
-                    
-                }
-            }
-            else{
-                if(this.root.left != null){
-                    this.root = this.root.left;
-                }
-                else{
-                    this.root = null;
-                    console.log("The Tree is now empty.")
-                }
-                
-            }
-        }
-        else{ 
-            if(tmp.right.data === value){
-                if(tmp.right.right === null && tmp.right.left === null){
-                    tmp.right = null;
-                }
-                else if(tmp.right.right != null && tmp.right.left === null){
-                    let replacingNode = tmp.right.right;
-                    tmp.right = null;
-                    tmp.right = replacingNode;
-                }
-                else if(tmp.right.right === null && tmp.right.left != null){
-                    let replacingNode = tmp.right.left;
-                    tmp.right = null;
-                    tmp.right = replacingNode;
-                }
-                else if(tmp.right.right != null && tmp.right.left != null){
-                    let rightSubT = tmp.right.right;
-                    if(rightSubT.left != null){
-                        while(rightSubT.left != null){
-                            rightSubT = rightSubT.left;
-                            tmp.right.right.left;
+                        else{
+                            tmp.right.data = rightSubT.data;
+                            if(rightSubT.right != null){
+                                tmp.right.right = rightSubT.right;
+                            }
                         }
-                        tmp.right.data = rightSubT.data;
-                        tmp.right.right.left = null;
+                        
                     }
-                    else{
-                        while(rightSubT.right != null){
-                            rightSubT = rightSubT.right;
-                            tmp.right.right.right;
+                }
+                else if(tmp.left != null && tmp.left.data === value){
+                    if(tmp.left.left === null && tmp.left.right === null){
+                        tmp.left = null;
+                    }
+                    else if(tmp.left.left != null && tmp.left.right === null){
+                        let replacingNode = tmp.left.left;
+                        tmp.left = null;
+                        tmp.left = replacingNode;
+                    }
+                    else if(tmp.left.left === null && tmp.left.right != null){
+                        let replacingNode = tmp.left.right;
+                        tmp.left = null;
+                        tmp.left = replacingNode;
+                    }
+                    else if(tmp.left.left != null && tmp.left.right != null){
+                        let rightSubT = tmp.left.right;
+                        if(rightSubT.left != null){
+                            while(rightSubT.left != null){
+                                rightSubT = rightSubT.left;
+                            }
+                            tmp.left.data = rightSubT.data;
+                            tmp.left.right.left = null;
                         }
-                        tmp.right.data = rightSubT.data;
-                        tmp.right.right.right = null;
-                    }
-                    
-                }
-            }
-            else if(tmp.left.data === value){
-                if(tmp.left.left === null && tmp.left.right === null){
-                    tmp.left = null;
-                }
-                else if(tmp.left.left != null && tmp.left.right === null){
-                    let replacingNode = tmp.left.left;
-                    tmp.left = null;
-                    tmp.left = replacingNode;
-                }
-                else if(tmp.left.left === null && tmp.left.right != null){
-                    let replacingNode = tmp.left.right;
-                    tmp.left = null;
-                    tmp.left = replacingNode;
-                }
-                else if(tmp.left.left != null && tmp.left.right != null){
-                    let rightSubT = tmp.left.right;
-                    if(rightSubT.left != null){
-                        while(rightSubT.left != null){
-                            rightSubT = rightSubT.left;
-                            tmp.left.right.left;
+                        else{
+                            tmp.left.data = rightSubT.data;
+                            
+                            if(rightSubT.right != null){
+                                tmp.left.right = rightSubT.right; 
+                            }
                         }
-                        tmp.left.data = rightSubT.data;
-                        tmp.left.right.left = null;
+                        
                     }
-                    else{
-                        while(rightSubT.right != null){
-                            rightSubT = rightSubT.right;
-                            tmp.left.right.right;
-                        }
-                        tmp.right.data = rightSubT.data;
-                        tmp.left.right.right = null;   
-                    }
-                    
                 }
-            }
-            //IF VALUE TO DELETE IS GREATER THAN ROOT NODE
-            else if(value > tmp.data){
-                this.remove(value, tmp.right);
-            }
-            //IF VALUE TO DELETE IS LESS THAN ROOT NODE
-            else if(value < tmp.data){
-                this.remove(value, tmp.left);
+                //IF VALUE TO DELETE IS GREATER THAN ROOT NODE
+                else if(value > tmp.data){
+                    this.remove(value, tmp.right);
+                }
+                //IF VALUE TO DELETE IS LESS THAN ROOT NODE
+                else if(value < tmp.data){
+                    this.remove(value, tmp.left);
+                }
             }
         }
     }
