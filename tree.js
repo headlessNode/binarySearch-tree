@@ -136,9 +136,8 @@ export class Tree{
                         }
                         else{
                             tmp.right.data = rightSubT.data;
-                            if(rightSubT.right != null){
-                                tmp.right.right = rightSubT.right;
-                            }
+                            tmp.right.right = rightSubT.right;
+
                         }
                         
                     }
@@ -168,10 +167,7 @@ export class Tree{
                         }
                         else{
                             tmp.left.data = rightSubT.data;
-                            
-                            if(rightSubT.right != null){
-                                tmp.left.right = rightSubT.right; 
-                            }
+                            tmp.left.right = rightSubT.right;
                         }
                         
                     }
