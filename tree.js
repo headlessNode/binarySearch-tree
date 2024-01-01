@@ -57,10 +57,56 @@ export class Tree{
         }        
     }
     remove(value, tmp = this.root){
-        if(this.root === null){
-            throw new Error('Tree is empty.');
+        //IF ROOT NODE IS TO BE DELETED
+        if(value === this.root.data){
+            if(this.root.right != null){
+                let rightSubT = tmp.right;
+                if(tmp.left === null && tmp.right != null){
+                    this.root.data = tmp.data;
+                    if(rightSubT != null){
+                        tmp.data = rightSubT.data;
+                        tmp.right = null;
+                    }
+                }
+                else if(tmp.left === null && tmp.right === null){
+                    this.root.data = tmp.data;
+                    let nTmp = this.root;
+                    while(nTmp.right.left != null && nTmp.right.right != null){
+                        nTmp = nTmp.right;
+                    }
+                    if(nTmp.left.left === null && nTmp.left.right === null){
+                        nTmp.left = null;
+                    }
+                }
+                else{
+                    if(rightSubT.left != null){
+                        this.remove(value, rightSubT.left);
+                    }
+                    else{
+                        this.root.data = rightSubT.data;
+                        if(rightSubT.right != null){
+                            this.root.right = rightSubT.right;
+                            rightSubT.right = null;
+                        }else{
+                            this.root.right = rightSubT.data;
+                            this.root.right = null;
+                        }
+                    }
+                    
+                }
+            }
+            else{
+                if(this.root.left != null){
+                    this.root = this.root.left;
+                }
+                else{
+                    this.root = null;
+                    console.log("The Tree is now empty.")
+                }
+                
+            }
         }
-        else if(value != this.root.data){
+        else{ 
             if(tmp.right.data === value){
                 if(tmp.right.right === null && tmp.right.left === null){
                     tmp.right = null;
@@ -131,14 +177,14 @@ export class Tree{
                     
                 }
             }
+            //IF VALUE TO DELETE IS GREATER THAN ROOT NODE
             else if(value > tmp.data){
                 this.remove(value, tmp.right);
-            }else if(value < tmp.data){
+            }
+            //IF VALUE TO DELETE IS LESS THAN ROOT NODE
+            else if(value < tmp.data){
                 this.remove(value, tmp.left);
             }
-        }
-        else{
-            
         }
     }
 }

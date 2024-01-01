@@ -17,5 +17,3 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 
 
 prettyPrint(treeList.root);
-treeList.remove(8);
-prettyPrint(treeList.root);
