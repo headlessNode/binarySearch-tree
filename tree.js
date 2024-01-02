@@ -183,4 +183,16 @@ export class Tree{
             }
         }
     }
+    find(value, tmp=this.root){
+        if(tmp === null){
+            return `${value} doesnot exist in the tree.`
+        }
+        else if(value > tmp.data){
+            return this.find(value, tmp.right);
+        }else if(value < tmp.data){
+            return this.find(value, tmp.left);
+        }else{
+            return tmp;
+        }
+    }
 }
