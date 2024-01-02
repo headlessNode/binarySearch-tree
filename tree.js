@@ -230,4 +230,32 @@ export class Tree{
         pTraverse();
         return values;
     }
+    inOrder(cb = (node)=>{return node.data}){
+        let values = [];
+        const inTraverse = (tmp = this.root)=>{
+            //left, root, right
+            if(tmp === null){
+                return
+            }
+            inTraverse(tmp.left);
+            values.push(cb(tmp));
+            inTraverse(tmp.right);
+        }
+        inTraverse();
+        return values;
+    }
+    postOrder(cb = (node)=>{return node.data}){
+        let values = [];
+        const postTraverse = (tmp = this.root)=>{
+            //left, right, root
+            if(tmp === null){
+                return
+            }
+            postTraverse(tmp.left);
+            postTraverse(tmp.right);
+            values.push(cb(tmp));
+        }
+        postTraverse();
+        return values;
+    }
 }

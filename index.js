@@ -19,3 +19,5 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 prettyPrint(treeList.root);
 console.log(treeList.levelOrder());
 console.log(treeList.preOrder());
+console.log(treeList.inOrder());
+console.log(treeList.postOrder());
