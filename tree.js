@@ -216,4 +216,18 @@ export class Tree{
         queuing();
         return values;
     }
+    preOrder(cb = (node)=>{return node.data}){
+        let values = [];
+        const pTraverse = (tmp = this.root)=>{
+            //root , left, right
+            if(tmp === null){
+                return;
+            }
+            values.push(cb(tmp));
+            pTraverse(tmp.left)
+            pTraverse(tmp.right);
+        }
+        pTraverse();
+        return values;
+    }
 }

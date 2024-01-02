@@ -18,3 +18,4 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 
 prettyPrint(treeList.root);
 console.log(treeList.levelOrder());
+console.log(treeList.preOrder());
