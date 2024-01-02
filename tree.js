@@ -195,14 +195,16 @@ export class Tree{
             return tmp;
         }
     }
-    levelOrder(cb = (node)=>{console.log(node);}){
+    levelOrder(cb = (node)=>{ return node.data}){
         let queue = [this.root];
+        let values = [];
         const queuing = ()=>{
             if(queue.length === 0){
                 return;
             }
             let currNode = queue.shift();
-            cb(currNode);
+            values.push(cb(currNode));
+
             if(currNode.left != null){
                 queue.push(currNode.left);
             }
@@ -212,5 +214,6 @@ export class Tree{
             queuing();
         }
         queuing();
+        return values;
     }
 }

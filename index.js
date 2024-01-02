@@ -17,4 +17,4 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 
 
 prettyPrint(treeList.root);
-treeList.levelOrder();
+console.log(treeList.levelOrder());
