@@ -195,4 +195,22 @@ export class Tree{
             return tmp;
         }
     }
+    levelOrder(cb = (node)=>{console.log(node);}){
+        let queue = [this.root];
+        const queuing = ()=>{
+            if(queue.length === 0){
+                return;
+            }
+            let currNode = queue.shift();
+            cb(currNode);
+            if(currNode.left != null){
+                queue.push(currNode.left);
+            }
+            if(currNode.right != null){
+                queue.push(currNode.right);
+            }
+            queuing();
+        }
+        queuing();
+    }
 }
