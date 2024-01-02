@@ -258,4 +258,12 @@ export class Tree{
         postTraverse();
         return values;
     }
+    height(node){
+        if(node === null){
+            return 0;
+        }
+        let leftSubT = this.height(node.left);
+        let rightSubT = this.height(node.right);
+        return Math.max(leftSubT,rightSubT) + 1;
+    }
 }

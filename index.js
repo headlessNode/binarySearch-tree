@@ -21,3 +21,4 @@ console.log(treeList.levelOrder());
 console.log(treeList.preOrder());
 console.log(treeList.inOrder());
 console.log(treeList.postOrder());
+console.log(treeList.height(treeList.root));
