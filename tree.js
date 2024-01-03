@@ -266,4 +266,22 @@ export class Tree{
         let rightSubT = this.height(node.right);
         return Math.max(leftSubT,rightSubT) + 1;
     }
+    depth(node, tmp=this.root){
+        if(tmp === null){
+            return -1;
+        }
+        if(node === tmp.data){
+            return 0;
+        }
+        let leftSubT = 0;
+        let rightSubT = 0;
+        if(node > tmp.data){
+            rightSubT = this.depth(node, tmp.right);
+        }
+        if(node < tmp.data){
+            leftSubT = this.depth(node, tmp.left);
+        }
+
+        return Math.max(leftSubT, rightSubT) + 1;
+    }
 }
