@@ -30,3 +30,6 @@ prettyPrint(treeList.root);
 console.log(treeList.height(treeList.root));
 console.log(treeList.depth(4));
 console.log(treeList.isBalanced() ? 'balanced' : 'Unbalanced');
+treeList.reBalance();
+prettyPrint(treeList.root);
+console.log(treeList.isBalanced() ? 'balanced' : 'Unbalanced');

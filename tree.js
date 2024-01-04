@@ -293,4 +293,8 @@ export class Tree{
             return true;
         }
     }
+    reBalance(){
+        const treeValues = this.inOrder();
+        this.root = buildTree(treeValues, 0, treeValues.length - 1);
+    }
 }
