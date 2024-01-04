@@ -284,4 +284,13 @@ export class Tree{
 
         return Math.max(leftSubT, rightSubT) + 1;
     }
+    isBalanced(){
+        let leftSubTHeight = this.height(this.root.left);
+        let rightSubTHeight = this.height(this.root.right);
+        if(Math.abs(leftSubTHeight - rightSubTHeight) > 1){
+            return false;
+        }else{
+            return true;
+        }
+    }
 }
